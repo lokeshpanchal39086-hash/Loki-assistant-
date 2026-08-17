@@ -1,3 +1,4 @@
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -14,3 +15,4 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+}
