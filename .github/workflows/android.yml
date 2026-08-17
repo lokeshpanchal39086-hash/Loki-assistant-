@@ -26,9 +26,10 @@ jobs:
           gradle-version: '8.7'
 
       - name: Build with Gradle
-            - name: Find APK
-        run: find . -type f -name "*.apk" -print
         run: gradle build
+
+      - name: Find APK
+        run: find . -type f -name "*.apk" -print
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
