@@ -2,9 +2,9 @@ name: Android CI
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   pull_request:
-    branches: ["main"]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -15,20 +15,24 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
-          java-version: "17"
-          distribution: "temurin"
+          distribution: temurin
+          java-version: '17'
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: "8.7"
 
-      - name: List App Tasks
-        run: gradle :app:tasks --all
+      - name: Check project structure
+        run: |
+          echo "=== ROOT ==="
+          ls -la
+          echo "=== APP ==="
+          ls -la app || true
+          echo "=== SETTINGS ==="
+          cat settings.gradle.kts
 
-      - name: Build APK
+      - name: Build Debug APK
         run: gradle :app:assembleDebug
 
       - name: Find APK
@@ -37,5 +41,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Loki-APK
+          name: Loki-debug-apk
           path: app/build/outputs/apk/**/*.apk
