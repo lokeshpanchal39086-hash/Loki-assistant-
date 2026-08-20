@@ -23,7 +23,20 @@ jobs:
         with:
           gradle-version: "8.7"
 
-      - name: Check Gradle tasks
+      - name: Check project
+        run: |
+          echo "=== ROOT ==="
+          ls -la
+          echo "=== APP ==="
+          ls -la app
+          echo "=== SETTINGS ==="
+          cat settings.gradle.kts
+          echo "=== ROOT BUILD ==="
+          cat build.gradle.kts
+          echo "=== APP BUILD ==="
+          cat app/build.gradle.kts
+
+      - name: Check Android plugin tasks
         run: gradle :app:tasks --all
 
       - name: Build Debug APK
