@@ -2,9 +2,9 @@ name: Android CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -18,19 +18,26 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: "17"
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.7"
 
       - name: Check project structure
         run: |
           echo "=== ROOT ==="
           ls -la
           echo "=== APP ==="
-          ls -la app || true
+          ls -la app
+          echo "=== APP BUILD FILE ==="
+          cat app/build.gradle.kts
           echo "=== SETTINGS ==="
           cat settings.gradle.kts
+
+      - name: Check Gradle tasks
+        run: gradle :app:tasks --all
 
       - name: Build Debug APK
         run: gradle :app:assembleDebug
@@ -43,3 +50,4 @@ jobs:
         with:
           name: Loki-debug-apk
           path: app/build/outputs/apk/**/*.apk
+          if-no-files-found: error
