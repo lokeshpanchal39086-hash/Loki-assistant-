@@ -3,6 +3,8 @@ name: Android CI
 on:
   push:
     branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
   build:
@@ -27,12 +29,16 @@ jobs:
         run: |
           echo "=== ROOT ==="
           ls -la
+
           echo "=== APP ==="
           ls -la app
+
           echo "=== SETTINGS ==="
           cat settings.gradle.kts
+
           echo "=== ROOT BUILD ==="
           cat build.gradle.kts
+
           echo "=== APP BUILD ==="
           cat app/build.gradle.kts
 
@@ -49,5 +55,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Loki-debug-apk
-          path: app/build/outputs/apk/**/*.apk
+          path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
