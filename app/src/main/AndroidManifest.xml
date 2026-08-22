@@ -4,7 +4,8 @@
     <application
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:label="Loki Assistant"
-        android:allowBackup="true">
+        android:allowBackup="true"
+        android:supportsRtl="true">
 
         <activity
             android:name=".MainActivity"
