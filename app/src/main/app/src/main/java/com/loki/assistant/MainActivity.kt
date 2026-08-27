@@ -11,15 +11,14 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val text = TextView(this).apply {
-            text = "LOKI\n\nYour personal AI assistant"
-            textSize = 24f
-            setTextColor(Color.WHITE)
-            setBackgroundColor(Color.BLACK)
-            gravity = Gravity.CENTER
-            setPadding(30, 30, 30, 30)
-        }
+        val textView = TextView(this)
 
-        setContentView(text)
+        textView.text = "LOKI\n\nYour personal AI assistant"
+        textView.textSize = 24f
+        textView.setTextColor(Color.WHITE)
+        textView.setBackgroundColor(Color.BLACK)
+        textView.gravity = Gravity.CENTER
+
+        setContentView(textView)
     }
 }
