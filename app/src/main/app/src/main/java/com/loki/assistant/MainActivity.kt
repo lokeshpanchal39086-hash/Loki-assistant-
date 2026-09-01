@@ -11,12 +11,12 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val textView = TextView(this)
-        textView.text = "LOKI"
-        textView.textSize = 30f
-        textView.setTextColor(Color.BLACK)
-        textView.gravity = Gravity.CENTER
+        val tv = TextView(this)
+        tv.text = "LOKI"
+        tv.textSize = 30f
+        tv.setTextColor(Color.BLACK)
+        tv.gravity = Gravity.CENTER
 
-        setContentView(textView)
+        setContentView(tv)
     }
 }
